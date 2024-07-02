@@ -1,4 +1,14 @@
+# Discord Clone
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+[`Clerk`](https://clerk.com/docs) for authorization and user management.
+
+[`Prisma`](https://www.prisma.io/docs) database toolkit for easier management.
+
+Using [`Neon DB`](https://neon.tech/docs/introduction) Postgress database service free tier.
 
 ## Getting Started
 
@@ -14,6 +24,8 @@ pnpm dev
 bun dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Development Commands
 
 Install new UI library components from [shadcn-ui](https://ui.shadcn.com/docs):
@@ -22,11 +34,25 @@ Install new UI library components from [shadcn-ui](https://ui.shadcn.com/docs):
 npx shadcn-ui@latest add <component-name>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run these 2 commands every time schema.prisma is modified.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Generate schema to add it to the node modules to develop with it:
 
-[Clerk](https://clerk.com/docs) for authorization and user management.
+```bash
+npx prisma generate
+```
+
+Create the collections in database:
+
+```bash
+npx prisma db push
+```
+
+Manipulate data in all of Prisma projects with [`Prisma Studio`](https://www.prisma.io/studio):
+
+```bash
+npx prisma studio
+```
 
 ## Learn More
 
