@@ -14,11 +14,19 @@ pnpm dev
 bun dev
 ```
 
+## Development Commands
+
+Install new UI library components from [shadcn-ui](https://ui.shadcn.com/docs):
+
+```bash
+npx shadcn-ui@latest add <component-name>
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+[Clerk](https://clerk.com/docs) for authorization and user management.
 
 ## Learn More
 
