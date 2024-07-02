@@ -48,6 +48,12 @@ Create the collections in database:
 npx prisma db push
 ```
 
+Manipulate data in all of Prisma projects with [`Prisma Studio`](https://www.prisma.io/studio):
+
+```bash
+npx prisma studio
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
