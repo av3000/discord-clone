@@ -10,6 +10,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 Using [`Neon DB`](https://neon.tech/docs/introduction) Postgress database service free tier.
 
+[`Uploadthing`](https://docs.uploadthing.com/) way to add file uploads to fullstack TypeScript app.
+
 ## Getting Started
 
 First, run the development server:
