@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import * as z from "zod";
@@ -28,6 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FileUpload } from "@/components/file-upload";
+import { ModalTypeEnum, useModalStore } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -38,17 +38,11 @@ const formSchema = z.object({
   }),
 });
 
-export const InitialModal = () => {
-  // Hydration may occure if some parts loaded on server and other on client,
-  // conditional "if isMounted" helps to load only when available.
-  // Might be it is solved issue in the current version.
-  const [isMounted, setIsMounted] = useState(false);
-
+export const CreateServerModal = () => {
+  const { isOpen, onClose, type } = useModalStore();
   const router = useRouter();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const isModalOpen = isOpen && type === ModalTypeEnum.CreateServer;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -66,18 +60,19 @@ export const InitialModal = () => {
 
       form.reset();
       router.refresh();
-      window.location.reload();
+      onClose();
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (!isMounted) {
-    return null;
-  }
+  const handleClose = () => {
+    form.reset();
+    onClose();
+  };
 
   return (
-    <Dialog open>
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
