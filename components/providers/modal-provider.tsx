@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { CreateServerModal } from "@/components/modals/create-server-modal";
+import { InviteModal } from "@/components/modals/invite-modal";
 
 export const ModalProvider = () => {
   // Hydration may occure if some parts loaded on server and other on client,
@@ -20,8 +21,7 @@ export const ModalProvider = () => {
 
   return (
     <>
-      {" "}
-      <CreateServerModal />{" "}
+      <CreateServerModal /> <InviteModal />
     </>
   );
 };
