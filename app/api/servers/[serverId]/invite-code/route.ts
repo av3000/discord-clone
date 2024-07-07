@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
-import { MemberRole } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 
-export async function POST(req: Request) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: { serverId: string } }
+) {
   try {
-    const { name, imageUrl } = await req.json();
     const profile = await currentProfile();
 
     if (!profile) {
@@ -18,24 +19,25 @@ export async function POST(req: Request) {
       );
     }
 
-    const server = await db.server.create({
-      data: {
+    if (!params.serverId) {
+      return new NextResponse("Server ID Missing", {
+        status: HttpResponses.BAD_REQUEST,
+      });
+    }
+
+    const server = await db.server.update({
+      where: {
+        id: params.serverId,
         profileId: profile.id,
-        name,
-        imageUrl,
+      },
+      data: {
         inviteCode: uuidv4(),
-        channels: {
-          create: [{ name: "general", profileId: profile.id }],
-        },
-        members: {
-          create: [{ profileId: profile.id, role: MemberRole.ADMIN }],
-        },
       },
     });
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log("[SERVERS_POST", error);
+    console.log("[SERVER_ID]", error);
     return new NextResponse(
       HttpResponseMessages[HttpResponses.INTERNAL_SERVER_ERROR],
       { status: HttpResponses.INTERNAL_SERVER_ERROR }

@@ -50,6 +50,14 @@ Create the collections in database:
 npx prisma db push
 ```
 
+To re-migrate and reset all of database data:
+
+```bash
+npx prisma migrate reset
+```
+
+After re-migrate you need to run `generate` and `push` again.
+
 Manipulate data in all of Prisma projects with [`Prisma Studio`](https://www.prisma.io/studio):
 
 ```bash
