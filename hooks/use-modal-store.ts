@@ -5,13 +5,15 @@ export type ModalType =
   | ModalTypeEnum.CreateServer
   | ModalTypeEnum.EditServer
   | ModalTypeEnum.Invite
-  | ModalTypeEnum.ManageMembers;
+  | ModalTypeEnum.ManageMembers
+  | ModalTypeEnum.CreateChannel;
 
 export enum ModalTypeEnum {
   CreateServer = "createServer",
   Invite = "invite",
   EditServer = "editServer",
   ManageMembers = "manageMembers",
+  CreateChannel = "createChannel",
 }
 
 interface ModalData {
@@ -22,7 +24,7 @@ interface ModalStore {
   type: ModalType | null;
   data: ModalData;
   isOpen: boolean;
-  onOpen: (type: ModalType, data: ModalData) => void;
+  onOpen: (type: ModalType, data?: ModalData) => void;
   onClose: () => void;
 }
 
