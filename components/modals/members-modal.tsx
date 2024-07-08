@@ -15,6 +15,8 @@ import {
   ShieldQuestion,
 } from "lucide-react";
 
+import { MemberRole } from "@prisma/client";
+
 import {
   Dialog,
   DialogContent,
@@ -37,7 +39,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MemberRole } from "@prisma/client";
 
 const roleIconMap = {
   GUEST: null,
