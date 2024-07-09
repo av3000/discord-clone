@@ -1,7 +1,7 @@
 import { Server } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType =
+type ModalType =
   | ModalTypeEnum.CreateServer
   | ModalTypeEnum.EditServer
   | ModalTypeEnum.Invite
