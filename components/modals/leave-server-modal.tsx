@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Dialog,
@@ -14,7 +15,6 @@ import {
 
 import { ModalTypeEnum, useModalStore } from "@/hooks/use-modal-store";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
 
 export const LeaveModal = () => {
   const router = useRouter();
