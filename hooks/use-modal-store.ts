@@ -6,7 +6,8 @@ export type ModalType =
   | ModalTypeEnum.EditServer
   | ModalTypeEnum.Invite
   | ModalTypeEnum.ManageMembers
-  | ModalTypeEnum.CreateChannel;
+  | ModalTypeEnum.CreateChannel
+  | ModalTypeEnum.LeaveServer;
 
 export enum ModalTypeEnum {
   CreateServer = "createServer",
@@ -14,6 +15,7 @@ export enum ModalTypeEnum {
   EditServer = "editServer",
   ManageMembers = "manageMembers",
   CreateChannel = "createChannel",
+  LeaveServer = "leaveServer",
 }
 
 interface ModalData {
