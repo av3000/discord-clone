@@ -4,6 +4,37 @@ import { currentProfile } from "@/lib/current-profile";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 import { db } from "@/lib/db";
 
+export async function DELETE(
+  req: Request,
+  { params }: { params: { serverId: string } }
+) {
+  try {
+    const profile = await currentProfile();
+
+    if (!profile) {
+      return new NextResponse(
+        HttpResponseMessages[HttpResponses.UNAUTHORIZED],
+        { status: HttpResponses.UNAUTHORIZED }
+      );
+    }
+
+    const server = await db.server.delete({
+      where: {
+        id: params.serverId,
+        profileId: profile.id,
+      },
+    });
+
+    return NextResponse.json(server);
+  } catch (error) {
+    console.log("[SERVER_ID_DELETE", error);
+    return new NextResponse(
+      HttpResponseMessages[HttpResponses.INTERNAL_SERVER_ERROR],
+      { status: HttpResponses.INTERNAL_SERVER_ERROR }
+    );
+  }
+}
+
 export async function PATCH(
   req: Request,
   { params }: { params: { serverId: string } }
