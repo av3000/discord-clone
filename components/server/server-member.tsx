@@ -1,10 +1,12 @@
 "use client";
 
-import { Member, Profile, Server } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
-import { roleIconMap } from "../maps";
+
+import { Member, Profile, Server } from "@prisma/client";
+
 import { cn } from "@/lib/utils";
-import { UserAvatar } from "../user-avatar";
+import { roleIconMap } from "@/components/maps";
+import { UserAvatar } from "@/components/user-avatar";
 
 interface ServerMemberProps {
   member: Member & { profile: Profile };
@@ -35,6 +37,7 @@ export const ServerMember = ({ member, server }: ServerMemberProps) => {
             "text-primary dark:text-zinc-200 dark:group-hover:text-white"
         )}
       >
+        {/* channelId === member.id ??? logic seems odd */}
         {member.profile.name}
       </p>
       {roleIcon}

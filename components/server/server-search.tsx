@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 import { SectionType, SectionTypeEnum } from "@/types";
 import {
@@ -12,7 +13,6 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useParams, useRouter } from "next/navigation";
 
 interface ServerSearchProps {
   data: {

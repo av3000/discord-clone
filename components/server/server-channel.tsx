@@ -1,10 +1,12 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
-import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { ActionTooltip } from "../action-tool";
+import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
+
+import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
+
+import { cn } from "@/lib/utils";
+import { ActionTooltip } from "@/components/action-tool";
 
 interface ServerChannelProps {
   channel: Channel;
