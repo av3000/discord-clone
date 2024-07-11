@@ -1,7 +1,7 @@
-import { Server } from "@prisma/client";
+import { ChannelType, Server } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType =
+type ModalType =
   | ModalTypeEnum.CreateServer
   | ModalTypeEnum.EditServer
   | ModalTypeEnum.Invite
@@ -22,6 +22,7 @@ export enum ModalTypeEnum {
 
 interface ModalData {
   server?: Server;
+  channelType?: ChannelType;
 }
 
 interface ModalStore {
