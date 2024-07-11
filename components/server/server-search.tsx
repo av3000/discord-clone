@@ -3,7 +3,7 @@
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { SearchType, SearchTypeEnum } from "@/types";
+import { SectionType, SectionTypeEnum } from "@/types";
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,7 +17,7 @@ import { useParams, useRouter } from "next/navigation";
 interface ServerSearchProps {
   data: {
     label: string;
-    type: SearchType;
+    type: SectionType;
     data:
       | {
           icon: React.ReactNode;
@@ -50,15 +50,15 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     type,
   }: {
     id: string;
-    type: SearchType;
+    type: SectionType;
   }) => {
     console.log("onSearchResultClick");
     setOpen(false);
-    if (type === SearchTypeEnum.Member) {
+    if (type === SectionTypeEnum.Members) {
       return router.push(`/servers/${params?.serverId}/conversations/${id}`);
     }
 
-    if (type === SearchTypeEnum.Channel) {
+    if (type === SectionTypeEnum.Channels) {
       return router.push(`/servers/${params?.serverId}/channels/${id}`);
     }
   };

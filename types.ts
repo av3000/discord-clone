@@ -4,9 +4,9 @@ export type ServerWithMembersWithProfiles = Server & {
   members: (Member & { profile: Profile })[];
 };
 
-export enum SearchTypeEnum {
-  Channel = "Channel",
-  Member = "Member",
+export enum SectionTypeEnum {
+  Channels = "Channels",
+  Members = "Members",
 }
 
-export type SearchType = SearchTypeEnum.Channel | SearchTypeEnum.Member;
+export type SectionType = SectionTypeEnum.Channels | SectionTypeEnum.Members;
