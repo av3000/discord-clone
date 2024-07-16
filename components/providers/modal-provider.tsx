@@ -13,7 +13,7 @@ import { DeleteChannelModal } from "@/components/modals/delete-channel-modal";
 import { EditChannelModal } from "@/components/modals/edit-channel-modal";
 
 export const ModalProvider = () => {
-  // Hydration may occure if some parts loaded on server and other on client,
+  // Hydration may NOT occure if some parts havent loaded yet from server,
   // conditional "if isMounted" helps to load only when available.
   // Might be it is solved issue in the current version.
   const [isMounted, setIsMounted] = useState(false);
