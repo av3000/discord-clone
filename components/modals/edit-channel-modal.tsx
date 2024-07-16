@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 import { ChannelType } from "@prisma/client";
 
+import { ModalTypeEnum, useModalStore } from "@/hooks/use-modal-store";
 import {
   Dialog,
   DialogContent,
@@ -26,17 +27,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ModalTypeEnum, useModalStore } from "@/hooks/use-modal-store";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
 
 const formSchema = z.object({
   name: z

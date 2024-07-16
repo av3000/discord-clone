@@ -1,8 +1,9 @@
+import { MemberRole } from "@prisma/client";
+import { NextResponse } from "next/server";
+
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { MemberRole } from "@prisma/client";
-import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
