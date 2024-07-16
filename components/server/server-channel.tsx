@@ -7,7 +7,11 @@ import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
 
 import { cn } from "@/lib/utils";
 import { ActionTooltip } from "@/components/action-tool";
-import { ModalTypeEnum, useModalStore } from "@/hooks/use-modal-store";
+import {
+  ModalType,
+  ModalTypeEnum,
+  useModalStore,
+} from "@/hooks/use-modal-store";
 
 interface ServerChannelProps {
   channel: Channel;
@@ -31,9 +35,18 @@ export const ServerChannel = ({
   const params = useParams();
   const router = useRouter();
 
+  const openChannelPage = () => {
+    router.push(`/servers/${params?.serverId}/channels/${channel.id}`);
+  };
+
+  const onChannelAction = (e: React.MouseEvent, action: ModalType) => {
+    e.stopPropagation();
+    onOpen(action, { channel, server });
+  };
+
   return (
     <button
-      onClick={() => {}}
+      onClick={openChannelPage}
       className={cn(
         "group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1"
       )}
@@ -52,17 +65,13 @@ export const ServerChannel = ({
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Edit">
             <Edit
-              onClick={() =>
-                onOpen(ModalTypeEnum.EditChannel, { server, channel })
-              }
+              onClick={(e) => onChannelAction(e, ModalTypeEnum.EditChannel)}
               className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
             />
           </ActionTooltip>
           <ActionTooltip label="Delete">
             <Trash
-              onClick={() =>
-                onOpen(ModalTypeEnum.DeleteChannel, { server, channel })
-              }
+              onClick={(e) => onChannelAction(e, ModalTypeEnum.DeleteChannel)}
               className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
             />
           </ActionTooltip>
