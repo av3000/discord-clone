@@ -9,4 +9,9 @@ export enum SectionTypeEnum {
   Members = "Members",
 }
 
+export enum ChatHeaderType {
+  Channel = "Channel",
+  Conversation = "Conversation",
+}
+
 export type SectionType = SectionTypeEnum.Channels | SectionTypeEnum.Members;
