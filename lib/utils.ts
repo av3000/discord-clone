@@ -13,6 +13,7 @@ export enum HttpResponses {
   UNAUTHORIZED = 401,
   FORBIDDEN = 403,
   NOT_FOUND = 404,
+  NOT_ALLOWED = 405,
   INTERNAL_SERVER_ERROR = 500,
 }
 
@@ -24,5 +25,6 @@ export const HttpResponseMessages: { [key in HttpResponses]: string } = {
   [HttpResponses.UNAUTHORIZED]: "Unauthorized",
   [HttpResponses.FORBIDDEN]: "Forbidden",
   [HttpResponses.NOT_FOUND]: "Not Found",
+  [HttpResponses.NOT_ALLOWED]: "Method Not Allowed",
   [HttpResponses.INTERNAL_SERVER_ERROR]: "Internal Server Error",
 };
