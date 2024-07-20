@@ -12,6 +12,7 @@ import { DeleteServerModal } from "@/components/modals/delete-server-modal";
 import { DeleteChannelModal } from "@/components/modals/delete-channel-modal";
 import { EditChannelModal } from "@/components/modals/edit-channel-modal";
 import { MessageFileModal } from "@/components/modals/message-file-modal";
+import { DeleteMessageModal } from "@/components/modals/delete-message-modal";
 
 export const ModalProvider = () => {
   // Hydration may NOT occure if some parts havent loaded yet from server,
@@ -31,7 +32,8 @@ export const ModalProvider = () => {
     <>
       <CreateServerModal /> <InviteModal /> <EditServerModal /> <MembersModal />{" "}
       <CreateChannelModal /> <LeaveModal /> <DeleteServerModal />{" "}
-      <DeleteChannelModal /> <EditChannelModal /> <MessageFileModal />
+      <DeleteChannelModal /> <EditChannelModal /> <MessageFileModal />{" "}
+      <DeleteMessageModal />
     </>
   );
 };
