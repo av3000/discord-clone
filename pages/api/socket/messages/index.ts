@@ -1,18 +1,9 @@
 import { NextApiRequest } from "next";
 
-import { Profile } from "@prisma/client";
-
-import { NextApiResponseServerIO } from "@/types";
+import { MessageRequestProp, NextApiResponseServerIO } from "@/types";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 import { db } from "@/lib/db";
 import { currentProfilePages } from "@/lib/current-profile-pages";
-
-interface MessageRequestProp {
-  profile: Profile | null;
-  serverId: string | string[] | undefined;
-  channelId: string | string[] | undefined;
-  content: string;
-}
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,7 +20,7 @@ export default async function handler(
     const { content, fileUrl } = req.body;
     const { serverId, channelId } = req.query;
 
-    validateRequestPayload({ profile, serverId, channelId, content }, res);
+    if (!isRequestValid({ profile, serverId, channelId, content }, res)) return;
 
     const server = await db.server.findFirst({
       where: {
@@ -103,31 +94,31 @@ export default async function handler(
   }
 }
 
-const validateRequestPayload = (
+const isRequestValid = (
   { profile, serverId, channelId, content }: MessageRequestProp,
   res: NextApiResponseServerIO
 ) => {
   if (!profile) {
-    return res
+    res
       .status(HttpResponses.UNAUTHORIZED)
       .json({ error: HttpResponseMessages[HttpResponses.UNAUTHORIZED] });
+    return false;
   }
 
   if (!serverId) {
-    return res
-      .status(HttpResponses.BAD_REQUEST)
-      .json({ error: "Server ID missing" });
+    res.status(HttpResponses.BAD_REQUEST).json({ error: "Server ID missing" });
+    return false;
   }
 
   if (!channelId) {
-    return res
-      .status(HttpResponses.BAD_REQUEST)
-      .json({ error: "Channel ID missing" });
+    res.status(HttpResponses.BAD_REQUEST).json({ error: "Channel ID missing" });
+    return false;
   }
 
   if (!content) {
-    return res
-      .status(HttpResponses.BAD_REQUEST)
-      .json({ error: "Content missing" });
+    res.status(HttpResponses.BAD_REQUEST).json({ error: "Content missing" });
+    return false;
   }
+
+  return true;
 };

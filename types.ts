@@ -26,3 +26,10 @@ export type NextApiResponseServerIO = NextApiResponse & {
     };
   };
 };
+
+export interface MessageRequestProp {
+  profile: Profile | null;
+  serverId: string | string[] | undefined;
+  channelId: string | string[] | undefined;
+  content?: string;
+}
