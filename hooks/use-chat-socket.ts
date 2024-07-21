@@ -69,7 +69,7 @@ export const useChatSocket = ({
 
         newData[0] = {
           ...newData[0],
-          currentMessages: [newMessage, ...newData[0].items],
+          currentMessages: [newMessage, ...newData[0].currentMessages],
         };
 
         return {
