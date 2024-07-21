@@ -6,6 +6,8 @@ import { db } from "@/lib/db";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatHeaderType } from "@/types";
+import { ChatMessages } from "@/components/chat/chat-messages";
+import { ChatInput } from "@/components/chat/chat-input";
 
 interface MemberIdPageProps {
   params: {
@@ -21,7 +23,7 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
     return auth().redirectToSignIn();
   }
 
-  const existingMember = await db.member.findFirst({
+  const currentMember = await db.member.findFirst({
     where: {
       serverId: params.serverId,
       profileId: profile.id,
@@ -31,12 +33,12 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
     },
   });
 
-  if (!existingMember) {
+  if (!currentMember) {
     return redirect("/");
   }
 
   const conversation = await getOrCreateConversation(
-    existingMember.id,
+    currentMember.id,
     params.memberId
   );
 
@@ -55,6 +57,24 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
         imageUrl={otherMember.profile.imageUrl}
         name={otherMember.profile.name}
         serverId={params.serverId}
+        type={ChatHeaderType.Conversation}
+      />
+      <ChatMessages
+        name={otherMember.profile.name}
+        member={currentMember}
+        chatId={conversation.id}
+        apiUrl="/api/direct-messages"
+        socketUrl="/api/socket/direct-messages"
+        socketQuery={{ conversationId: conversation.id }}
+        paramKey="conversationId"
+        paramValue={conversation.id}
+        type={ChatHeaderType.Channel}
+      />
+
+      <ChatInput
+        apiUrl="/api/socket/direct-messages"
+        query={{ conversationId: conversation.id }}
+        name={otherMember.profile.name}
         type={ChatHeaderType.Conversation}
       />
     </div>

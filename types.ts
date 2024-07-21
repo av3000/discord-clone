@@ -33,3 +33,9 @@ export interface MessageRequestProp {
   channelId: string | string[] | undefined;
   content?: string;
 }
+
+export interface DirectMessageRequestProp {
+  profile: Profile | null;
+  conversationId: string | string[] | undefined;
+  content?: string;
+}

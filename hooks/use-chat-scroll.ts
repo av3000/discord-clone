@@ -17,6 +17,7 @@ export const useChatScroll = ({
 }: ChatScrollProps) => {
   const [hasInitialized, setHasInitialized] = useState(false);
 
+  // should load on scroll
   useEffect(() => {
     const topDiv = chatRef?.current;
 
@@ -35,6 +36,7 @@ export const useChatScroll = ({
     };
   }, [shouldLoadMore, loadMore, chatRef]);
 
+  // should scroll if bottom changed
   useEffect(() => {
     const bottomDiv = bottomRef?.current;
     const topDiv = chatRef.current;

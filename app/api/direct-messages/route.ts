@@ -1,7 +1,7 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { Message, Prisma } from "@prisma/client";
+import { DirectMessage, Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 const MESSAGE_BATCH = 10;
@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
 
     const cursor = searchParams.get("cursor");
-    const channelId = searchParams.get("channelId");
+    const conversationId = searchParams.get("conversationId");
 
     if (!profile) {
       return new NextResponse(
@@ -21,23 +21,23 @@ export async function GET(req: Request) {
       );
     }
 
-    if (!channelId) {
+    if (!conversationId) {
       return new NextResponse("Channel ID missing", {
         status: HttpResponses.BAD_REQUEST,
       });
     }
 
-    let messages: Message[] = [];
+    let messages: DirectMessage[] = [];
 
     if (cursor) {
-      messages = await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGE_BATCH,
         skip: 1,
         cursor: {
           id: cursor,
         },
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -51,10 +51,10 @@ export async function GET(req: Request) {
         },
       });
     } else {
-      messages = await db.message.findMany({
+      messages = await db.directMessage.findMany({
         take: MESSAGE_BATCH,
         where: {
-          channelId,
+          conversationId,
         },
         include: {
           member: {
@@ -79,7 +79,7 @@ export async function GET(req: Request) {
       nextCursor,
     });
   } catch (error) {
-    console.log("[MESSAGES_GET]", error);
+    console.log("[DIRRECT_MESSAGES_GET]", error);
     return new NextResponse(
       HttpResponseMessages[HttpResponses.INTERNAL_SERVER_ERROR],
       { status: HttpResponses.INTERNAL_SERVER_ERROR }
