@@ -12,12 +12,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "uploadthing.com",
-        port: "",
-        pathname: "/**",
+        hostname: "utfs.io",
+        pathname: "**",
       },
     ],
-    domains: ["utfs.io"],
   },
 };
 
