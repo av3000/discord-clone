@@ -12,6 +12,8 @@ Using [`Neon DB`](https://neon.tech/docs/introduction) Postgress database servic
 
 [`Uploadthing`](https://docs.uploadthing.com/) way to add file uploads to fullstack TypeScript app.
 
+[`Livekit`](https://docs.livekit.io/home/) for realtime streaming service.
+
 ## Getting Started
 
 First, run the development server:
