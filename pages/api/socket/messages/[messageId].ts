@@ -5,7 +5,7 @@ import { MemberRole } from "@prisma/client";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 import { MessageRequestProp, NextApiResponseServerIO } from "@/types";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,7 +24,7 @@ export default async function handler(
 
     if (!isRequestValid({ profile, serverId, channelId }, res)) return;
 
-    const server = await db.server.findFirst({
+    const server = await prisma.server.findFirst({
       where: {
         id: serverId as string,
         members: {
@@ -44,7 +44,7 @@ export default async function handler(
         .json({ error: "Server not found" });
     }
 
-    const channel = await db.channel.findFirst({
+    const channel = await prisma.channel.findFirst({
       where: {
         id: channelId as string,
         serverId: serverId as string,
@@ -67,7 +67,7 @@ export default async function handler(
         .json({ error: "Member not found" });
     }
 
-    let message = await db.message.findFirst({
+    let message = await prisma.message.findFirst({
       where: {
         id: messageId as string,
         channelId: channelId as string,
@@ -99,7 +99,7 @@ export default async function handler(
     }
 
     if (req.method === "DELETE") {
-      message = await db.message.update({
+      message = await prisma.message.update({
         where: {
           id: messageId as string,
         },
@@ -125,7 +125,7 @@ export default async function handler(
         });
       }
 
-      message = await db.message.update({
+      message = await prisma.message.update({
         where: {
           id: messageId as string,
         },

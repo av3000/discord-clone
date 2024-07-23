@@ -4,7 +4,7 @@ import { Hash, Mic, Video } from "lucide-react";
 import { ChannelType, Prisma } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { SectionTypeEnum } from "@/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -32,7 +32,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     return redirect("/");
   }
 
-  const server = await db.server.findUnique({
+  const server = await prisma.server.findUnique({
     where: {
       id: serverId,
     },

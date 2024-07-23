@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -17,7 +17,7 @@ export const NavigationSidebar = async () => {
     return redirect("/");
   }
 
-  const servers = await db.server.findMany({
+  const servers = await prisma.server.findMany({
     where: {
       members: {
         some: {

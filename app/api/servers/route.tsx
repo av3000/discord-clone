@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { MemberRole } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 
 export async function POST(req: Request) {
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const server = await db.server.create({
+    const server = await prisma.server.create({
       data: {
         profileId: profile.id,
         name,

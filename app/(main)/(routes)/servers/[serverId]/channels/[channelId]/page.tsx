@@ -5,7 +5,7 @@ import { ChannelType } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import { ChatHeaderType } from "@/types";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
@@ -25,13 +25,13 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
     return auth().redirectToSignIn();
   }
 
-  const channel = await db.channel.findUnique({
+  const channel = await prisma.channel.findUnique({
     where: {
       id: params.channelId,
     },
   });
 
-  const member = await db.member.findFirst({
+  const member = await prisma.member.findFirst({
     where: {
       serverId: params.serverId,
       profileId: profile.id,
