@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { Hash, Mic, Video } from "lucide-react";
 
-import { ChannelType, Prisma } from "@prisma/client";
+import { ChannelType, Prisma as PrismaType } from "@prisma/client";
 
 import { currentProfile } from "@/lib/current-profile";
 import prisma from "@/lib/db";
@@ -39,7 +39,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     include: {
       channels: {
         orderBy: {
-          createdAt: Prisma.SortOrder.desc,
+          createdAt: PrismaType.SortOrder.desc,
         },
       },
       members: {
@@ -47,7 +47,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           profile: true,
         },
         orderBy: {
-          role: Prisma.SortOrder.asc,
+          role: PrismaType.SortOrder.asc,
         },
       },
     },
