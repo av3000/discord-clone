@@ -2,7 +2,7 @@ import { NextApiRequest } from "next";
 
 import { DirectMessageRequestProp, NextApiResponseServerIO } from "@/types";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 
 export default async function handler(
@@ -22,7 +22,7 @@ export default async function handler(
 
     if (!isRequestValid({ profile, conversationId, content }, res)) return;
 
-    const conversation = await db.conversation.findFirst({
+    const conversation = await prisma.conversation.findFirst({
       where: {
         id: conversationId as string,
         OR: [
@@ -69,7 +69,7 @@ export default async function handler(
         .json({ message: "Member not found" });
     }
 
-    const message = await db.directMessage.create({
+    const message = await prisma.directMessage.create({
       data: {
         content,
         fileUrl,

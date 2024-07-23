@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 
 export async function DELETE(
@@ -32,7 +32,7 @@ export async function DELETE(
       });
     }
 
-    const updatedServer = await db.server.update({
+    const updatedServer = await prisma.server.update({
       where: {
         id: serverId,
         profileId: profile.id,
@@ -99,7 +99,7 @@ export async function PATCH(
       });
     }
 
-    const updatedServer = await db.server.update({
+    const updatedServer = await prisma.server.update({
       where: {
         id: serverId,
         profileId: profile.id,

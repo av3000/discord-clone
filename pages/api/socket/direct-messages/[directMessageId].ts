@@ -5,7 +5,7 @@ import { MemberRole } from "@prisma/client";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 import { DirectMessageRequestProp, NextApiResponseServerIO } from "@/types";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,7 +24,7 @@ export default async function handler(
 
     if (!isRequestValid({ profile, conversationId }, res)) return;
 
-    const conversation = await db.conversation.findFirst({
+    const conversation = await prisma.conversation.findFirst({
       where: {
         id: conversationId as string,
         OR: [
@@ -71,7 +71,7 @@ export default async function handler(
         .json({ error: "Member not found" });
     }
 
-    let directMessage = await db.directMessage.findFirst({
+    let directMessage = await prisma.directMessage.findFirst({
       where: {
         id: directMessageId as string,
       },
@@ -102,7 +102,7 @@ export default async function handler(
     }
 
     if (req.method === "DELETE") {
-      directMessage = await db.directMessage.update({
+      directMessage = await prisma.directMessage.update({
         where: {
           id: directMessageId as string,
         },
@@ -128,7 +128,7 @@ export default async function handler(
         });
       }
 
-      directMessage = await db.directMessage.update({
+      directMessage = await prisma.directMessage.update({
         where: {
           id: directMessageId as string,
         },

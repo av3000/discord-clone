@@ -1,6 +1,6 @@
 import { getAuth } from "@clerk/nextjs/server";
 
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { NextApiRequest } from "next";
 
 export const currentProfilePages = async (req: NextApiRequest) => {
@@ -10,7 +10,7 @@ export const currentProfilePages = async (req: NextApiRequest) => {
     return null;
   }
 
-  const profile = await db.profile.findUnique({
+  const profile = await prisma.profile.findUnique({
     where: {
       userId,
     },

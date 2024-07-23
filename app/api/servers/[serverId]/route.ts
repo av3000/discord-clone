@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 
 export async function DELETE(
   req: Request,
@@ -18,7 +18,7 @@ export async function DELETE(
       );
     }
 
-    const server = await db.server.delete({
+    const server = await prisma.server.delete({
       where: {
         id: params.serverId,
         profileId: profile.id,
@@ -50,7 +50,7 @@ export async function PATCH(
       );
     }
 
-    const server = await db.server.update({
+    const server = await prisma.server.update({
       where: {
         id: params.serverId,
         profileId: profile.id,

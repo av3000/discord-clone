@@ -2,7 +2,7 @@ import { MemberRole } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
 
 export async function PATCH(
@@ -40,7 +40,7 @@ export async function PATCH(
       });
     }
 
-    const server = await db.server.update({
+    const server = await prisma.server.update({
       where: {
         id: serverId,
         members: {
@@ -108,7 +108,7 @@ export async function DELETE(
       });
     }
 
-    const server = await db.server.update({
+    const server = await prisma.server.update({
       where: {
         id: serverId,
         members: {

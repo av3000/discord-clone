@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 
 interface ServerIdPageProps {
   params: {
@@ -18,7 +18,7 @@ const ServerIdPage = async ({ params }: ServerIdPageProps) => {
     return auth().redirectToSignIn();
   }
 
-  const server = await db.server.findUnique({
+  const server = await prisma.server.findUnique({
     where: {
       id: params.serverId,
       members: {

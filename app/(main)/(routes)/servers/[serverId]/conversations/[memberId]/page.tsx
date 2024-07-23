@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatHeaderType } from "@/types";
@@ -27,7 +27,7 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
     return auth().redirectToSignIn();
   }
 
-  const currentMember = await db.member.findFirst({
+  const currentMember = await prisma.member.findFirst({
     where: {
       serverId: params.serverId,
       profileId: profile.id,

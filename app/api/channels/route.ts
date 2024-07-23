@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { currentProfile } from "@/lib/current-profile";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { db } from "@/lib/db";
+import prisma from "@/lib/db";
 import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request) {
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const serverWithNewChannel = await db.server.update({
+    const serverWithNewChannel = await prisma.server.update({
       where: {
         id: serverId,
         members: {
