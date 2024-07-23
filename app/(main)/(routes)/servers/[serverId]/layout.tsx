@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
+import prisma from "@/lib/db";
 import { currentProfile } from "@/lib/current-profile";
 import { ServerSidebar } from "@/components/server/server-sidebar";
 

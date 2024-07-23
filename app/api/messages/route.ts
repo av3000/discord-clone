@@ -1,7 +1,7 @@
 import { currentProfile } from "@/lib/current-profile";
 import prisma from "@/lib/db";
 import { HttpResponseMessages, HttpResponses } from "@/lib/utils";
-import { Message, Prisma } from "@prisma/client";
+import { Message, Prisma as PrismaType } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 const MESSAGE_BATCH = 10;
@@ -47,7 +47,7 @@ export async function GET(req: Request) {
           },
         },
         orderBy: {
-          createdAt: Prisma.SortOrder.desc,
+          createdAt: PrismaType.SortOrder.desc,
         },
       });
     } else {
@@ -64,7 +64,7 @@ export async function GET(req: Request) {
           },
         },
         orderBy: {
-          createdAt: Prisma.SortOrder.desc,
+          createdAt: PrismaType.SortOrder.desc,
         },
       });
     }
