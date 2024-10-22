@@ -52,7 +52,6 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     id: string;
     type: SectionType;
   }) => {
-    console.log("onSearchResultClick");
     setOpen(false);
     if (type === SectionTypeEnum.Members) {
       return router.push(`/servers/${params?.serverId}/conversations/${id}`);
