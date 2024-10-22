@@ -2,11 +2,11 @@
 
 Live at [https://discord-clone-production-80db.up.railway.app/](https://discord-clone-production-80db.up.railway.app/). Please do not Ddos my free tiers 🙏
 
-[!Application demo](./docs/assets/images/dc-clone-create-edit-server.gif)
+![Application demo](./docs/assets/images/dc-clone-create-edit-server.gif)
 
-[!Application demo2](./docs/assets/images/dc-clone-search-invite-attachment.gif)
+![Application demo2](./docs/assets/images/dc-clone-search-invite-attachment.gif)
 
-[!Application demo3](./docs/assets/images/dc-clone-change-theme.gif)
+![Application demo3](./docs/assets/images/dc-clone-change-theme.gif)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
