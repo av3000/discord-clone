@@ -2,6 +2,10 @@
 
 Live at [https://discord-clone-production-80db.up.railway.app/](https://discord-clone-production-80db.up.railway.app/). Please do not Ddos my free tiers 🙏
 
+[!Application demo](./docs/assets/images/dc-clone-create-edit-server.gif)
+[!Application demo2](./docs/assets/images/dc-clone-search-invite-attachment.gif)
+[!Application demo3](./docs/assets/images/dc-clone-change-theme.gif)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
@@ -15,6 +19,33 @@ Using [`Neon DB`](https://neon.tech/docs/introduction) Postgress database servic
 [`Uploadthing`](https://docs.uploadthing.com/) way to add file uploads to fullstack TypeScript app.
 
 [`Livekit`](https://docs.livekit.io/home/) for realtime streaming service.
+
+[`Zod`](https://zod.dev) TypeScript-first schema validation with static type inference and easy-to-use forms validation zodResolver from [`hookform/resolvers`](https://github.com/react-hook-form/react-hook-form).
+
+[`Zustand`](https://github.com/pmndrs/zustand) client-side simplified state-management.
+
+[`tanstack/react-query`](https://github.com/TanStack/query) server-side data state management.
+
+[`Tailwind CSS`](https://tailwindui.com/) styling and [`shadcn/ui`](https://ui.shadcn.com/) UI copy-paste library for generating and extending UI components.
+Based on [`radix-ui`](https://www.radix-ui.com/primitives) primitives design system.
+
+[`lucide-react`](https://lucide.dev/guide/packages/lucide-react) icon library.
+
+[`Emoji Mart`](https://github.com/missive/emoji-mart) emoji picker component.
+
+[`WebSockets`](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server and [`SocketIO`](https://socket.io/) for enabling easier communication between client and server.
+
+## Project features
+
+- CRUD for discord Server, Channel, Messages and Roles management.
+- Audio and Video feature with Livekit.
+- In-chat emojies.
+- Responsive template layouts and Dark mode.
+- Attachements sending.
+- Server-side state data syncronization, caching, and infinite messages scrolling with react query.
+- Postgres DB with Prisma ORM.
+- Authentication with Clerk.
+- Real-time updates for messages using websockets.
 
 ## Getting Started
 
